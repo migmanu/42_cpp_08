@@ -6,13 +6,15 @@
 /*   By: migmanu <jmanuelmigoya@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 12:36:06 by migmanu           #+#    #+#             */
-/*   Updated: 2024/06/14 18:28:21 by migmanu          ###   ########.fr       */
+/*   Updated: 2024/06/17 20:10:06 by migmanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
 #include <algorithm>
+#include <climits>
+#include <cstdlib>
 #include <iostream>
 #include <stdexcept>
 #include <string>
@@ -52,7 +54,7 @@ Span &Span::operator=(const Span &rhs)
 
 void Span::addNumber(int nbr)
 {
-	if (_count == _N - 1)
+	if (_count == _N)
 		throw std::length_error("addNumber: error:_arr is already full.");
 	_arr[_count] = nbr;
 	_count++;
@@ -62,13 +64,45 @@ int Span::shortestSpan(void)
 {
 	if (_count <= 1)
 		throw std::invalid_argument("shortestSpan : error: _arr too short.");
-	int *arr_cpy;
-	std::copy(_arr, _arr + _N, arr_cpy);
-	std::sort(arr_cpy, arr_cpy + _N - 1);
+	int r = INT_MAX;
+	int *arr_cpy = new int[_N];
+	std::copy(_arr, _arr + _count, arr_cpy);
+	std::sort(arr_cpy, arr_cpy + _count);
+	for (unsigned int i = 0; i < _N - 1; i++)
+	{
+		int diff = std::abs(arr_cpy[i + 1] - arr_cpy[i]);
+		r = diff < r ? diff : r;
+	}
+	delete[] arr_cpy;
+	return r;
 }
+
 int Span::longestSpan(void)
+
 {
 	if (_count <= 1)
-		throw std::invalid_argument("shortestSpan : error: _arr too short.");
-	return std::max(_arr, _arr + _N - 1) - std::min(_arr, _arr + _N - 1);
+		throw std::invalid_argument("longestSpan : error: _arr too short.");
+	return *std::max_element(_arr, _arr + _count) -
+		   *std::min_element(_arr, _arr + _count);
+}
+
+void Span::printArr(void)
+{
+	unsigned int i = 0;
+	std::cout << "_arr: [";
+	for (; i < _count - 1; i++)
+	{
+		std::cout << _arr[i] << ", ";
+	}
+	std::cout << _arr[i] << "]" << std::endl;
+}
+
+void Span::bulkAdd(std::vector<int>::const_iterator start,
+				   std::vector<int>::const_iterator end)
+{
+	while (start != end)
+	{
+		addNumber(*start);
+		start++;
+	}
 }

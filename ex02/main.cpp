@@ -6,20 +6,20 @@
 /*   By: migmanu <jmanuelmigoya@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:39:13 by migmanu           #+#    #+#             */
-/*   Updated: 2024/06/18 20:36:44 by migmanu          ###   ########.fr       */
+/*   Updated: 2024/06/18 23:24:38 by migmanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 #include <cstdlib>
+#include <iomanip>
 #include <iostream>
 #include <stack>
 #include <string>
 
 #define SEPARATOR "-----------------------------------------------------"
 
-template <typename T>
-void testInhereted(MutantStack<T> stk)
+template <typename T> void testInhereted(MutantStack<T> stk)
 {
 	MutantStack<T> cpy = stk;
 	MutantStack<T> modified = stk;
@@ -29,20 +29,36 @@ void testInhereted(MutantStack<T> stk)
 	std::cout << std::endl << "Testing stack..." << std::endl;
 
 	// MEMBER FUNCTIONS TESTS
-	std::cout << "Test member functions" << std::endl;
-	std::cout << "stk.empty(): " << stk.empty() << std::endl;
-	std::cout << "stk.size(): " << stk.size() << std::endl;
-	std::cout << "stk.top(): " << stk.top() << std::endl;
-	std::cout << "modified.top(): " << modified.top() << std::endl;
+	std::cout << std::left << std::setw(20) << "Test member functions" << std::endl;
+	std::cout << std::left << std::setw(20) << "stk.empty(): " << stk.empty()
+			  << std::endl;
+	std::cout << std::left << std::setw(20) << "stk.size(): " << stk.size()
+			  << std::endl;
+	std::cout << std::left << std::setw(20) << "stk.top(): " << stk.top()
+			  << std::endl;
+	std::cout << std::left << std::setw(20) << "modified.top(): " << modified.top()
+			  << std::endl;
 
 	// NON-MEMBER FUNCTIONS TESTS
-	std::cout << "Test overloaded operators (non-member functions):" << std::endl;
-	std::cout << "stk == cpy: " << (stk == cpy ? "EQUAL" : "NOT EQUAL") << std::endl;
-	std::cout << "stk == modified: " << (stk == modified ? "EQUAL" : "NOT EQUAL") << std::endl;
-	std::cout << "stk != cpy: " << (stk == cpy ? "DIFFERENT" : "NOT DIFFERENT") << std::endl;
-	std::cout << "stk < cpy: " << (stk < cpy ? "SMALLER" : "NOT SMALLER") << std::endl;
-	std::cout << "cpy < stk: " << (cpy < stk ? "SMALLER" : "NOT SMALLER") << std::endl;
-	std::cout << "stk <= cpy: " << (stk <= cpy ? "SMALLER" : "NOT SMALLER") << std::endl;
+	std::cout << std::left << std::setw(20)
+			  << "Test overloaded operators (non-member functions):" << std::endl;
+	std::cout << std::left << std::setw(20)
+			  << "stk == cpy: " << (stk == cpy ? "EQUAL" : "NOT EQUAL") << std::endl;
+	std::cout << std::left << std::setw(20)
+			  << "stk == modified: " << (stk == modified ? "EQUAL" : "NOT EQUAL")
+			  << std::endl;
+	std::cout << std::left << std::setw(20)
+			  << "stk != cpy: " << (stk != cpy ? "DIFFERENT" : "NOT DIFFERENT")
+			  << std::endl;
+	std::cout << std::left << std::setw(20)
+			  << "stk < cpy: " << (stk < cpy ? "SMALLER" : "NOT SMALLER")
+			  << std::endl;
+	std::cout << std::left << std::setw(20)
+			  << "cpy < stk: " << (cpy < stk ? "SMALLER" : "NOT SMALLER")
+			  << std::endl;
+	std::cout << std::left << std::setw(20)
+			  << "stk <= cpy: " << (stk <= cpy ? "SMALLER" : "NOT SMALLER")
+			  << std::endl;
 
 	std::cout << SEPARATOR << std::endl << std::endl;
 }
@@ -73,6 +89,11 @@ int main(void)
 	str_stack.push("!");
 
 	testInhereted(int_stack);
+
+	// TEST ITERATORS
+	MutantStack<int>::iterator it = int_stack.begin();
+	// it++;
+	// std::cout << *it << std::endl;
 
 	return EXIT_SUCCESS;
 }

@@ -6,7 +6,7 @@
 /*   By: migmanu <jmanuelmigoya@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:39:13 by migmanu           #+#    #+#             */
-/*   Updated: 2024/06/18 23:24:38 by migmanu          ###   ########.fr       */
+/*   Updated: 2024/06/20 12:29:20 by migmanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,16 @@ int main(void)
 	testInhereted(int_stack);
 
 	// TEST ITERATORS
-	MutantStack<int>::iterator it = int_stack.begin();
-	// it++;
-	// std::cout << *it << std::endl;
+	std::cout << "Testing iterators" << std::endl;
+	MutantStack<int>::iterator begin = int_stack.begin();
+	MutantStack<int>::iterator end = int_stack.end();
+	std::cout << "Begin: " << *begin << " end: " << *end << std::endl;
+	std::cout << "Iterating and printing members:" << std::endl;
+	for (MutantStack<int>::iterator it = int_stack.begin(); it != end; it++)
+	{
+		std::cout << *it++;
+	}
+	std::cout << std::endl;
 
 	return EXIT_SUCCESS;
 }

@@ -6,12 +6,11 @@
 /*   By: migmanu <jmanuelmigoya@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:47:57 by migmanu           #+#    #+#             */
-/*   Updated: 2024/06/20 12:22:25 by migmanu          ###   ########.fr       */
+/*   Updated: 2024/06/20 13:12:53 by jmigoya-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <deque>
-#include <iterator>
 #include <stack>
 
 template <typename T, class container = std::deque<T> >

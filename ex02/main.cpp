@@ -6,7 +6,7 @@
 /*   By: migmanu <jmanuelmigoya@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:39:13 by migmanu           #+#    #+#             */
-/*   Updated: 2024/06/20 16:05:54 by jmigoya-         ###   ########.fr       */
+/*   Updated: 2024/06/24 14:34:18 by jmigoya-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ template <typename T> void testIterators(MutantStack<T> stk)
 	std::cout << std::endl << SEPARATOR;
 	std::cout << std::endl << "Testing iterators..." << std::endl;
 
-	// TEST BEING AND END
+	// TEST BEGIN AND END
 	std::cout << "Testing begin() and end()" << std::endl;
 	typename MutantStack<T>::iterator begin = stk.begin();
 	typename MutantStack<T>::iterator end = stk.end();
@@ -100,16 +100,19 @@ void ft_tests(void)
 		// WITH MUTANTSTACK
 		std::cout << std::endl << "Testing with MutantStack..." << std::endl;
 		MutantStack<int> mstack;
+		std::cout << "Push 5 and 17: " << std::endl;
 		mstack.push(5);
 		mstack.push(17);
 		std::cout << "Top: " << mstack.top() << std::endl;
+		std::cout << "Pop top: " << std::endl;
 		mstack.pop();
 		std::cout << "Size: " << mstack.size() << std::endl;
-		std::cout << "Elements: " << std::endl;
+		std::cout << "Push 3, 5, 737, 0: " << std::endl;
 		mstack.push(3);
 		mstack.push(5);
 		mstack.push(737);
 		mstack.push(0);
+		std::cout << "Print elements: " << std::endl;
 		MutantStack<int>::iterator it = mstack.begin();
 		MutantStack<int>::iterator ite = mstack.end();
 		++it;
@@ -125,16 +128,19 @@ void ft_tests(void)
 		// WITH STD::LIST
 		std::cout << std::endl << "Testing with std::list..." << std::endl;
 		std::list<int> mstack;
+		std::cout << "Push 5 and 17: " << std::endl;
 		mstack.push_front(5);
 		mstack.push_front(17);
 		std::cout << "Front: " << mstack.front() << std::endl;
+		std::cout << "Pop top: " << std::endl;
 		mstack.pop_front();
 		std::cout << "Size: " << mstack.size() << std::endl;
-		std::cout << "Elements: " << std::endl;
+		std::cout << "Push 3, 5, 737, 0: " << std::endl;
 		mstack.push_back(3);
 		mstack.push_back(5);
 		mstack.push_back(737);
 		mstack.push_back(0);
+		std::cout << "Print elements: " << std::endl;
 		std::list<int>::iterator it = mstack.begin();
 		std::list<int>::iterator ite = mstack.end();
 		++it;

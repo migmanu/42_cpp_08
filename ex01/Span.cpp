@@ -6,7 +6,7 @@
 /*   By: migmanu <jmanuelmigoya@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 12:36:06 by migmanu           #+#    #+#             */
-/*   Updated: 2024/06/17 20:10:06 by migmanu          ###   ########.fr       */
+/*   Updated: 2024/06/24 14:27:53 by jmigoya-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <cstdlib>
 #include <iostream>
 #include <stdexcept>
-#include <string>
 
 Span::Span(unsigned int N) : _N(N), _count(0)
 {
@@ -64,17 +63,17 @@ int Span::shortestSpan(void)
 {
 	if (_count <= 1)
 		throw std::invalid_argument("shortestSpan : error: _arr too short.");
-	int r = INT_MAX;
+	int result = INT_MAX;
 	int *arr_cpy = new int[_N];
 	std::copy(_arr, _arr + _count, arr_cpy);
 	std::sort(arr_cpy, arr_cpy + _count);
 	for (unsigned int i = 0; i < _N - 1; i++)
 	{
 		int diff = std::abs(arr_cpy[i + 1] - arr_cpy[i]);
-		r = diff < r ? diff : r;
+		result = diff < result ? diff : result;
 	}
 	delete[] arr_cpy;
-	return r;
+	return result;
 }
 
 int Span::longestSpan(void)
